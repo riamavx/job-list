@@ -1,13 +1,15 @@
 import React from 'react';
 import SearchBar from "../../molecules/SearchBar/SearchBar"
 import Card from "../../molecules/Card/Card"
+import FilterBar from "../../molecules/FilterBar/FilterBar"
+import MainTitle from "../../atoms/MainTitle/MainTitle"
 import "./homeContent.css"
 
 
-const HomeContent = ({ texto, onClick, type, placeholder, value, onChange, data }) => {
+const HomeContent = ({ texto,titulo, onClick,handleFilters, type, placeholder, value, onChange, data, filters }) => {
     return (
-        <main>
-            <h1>TechJobs</h1>
+        <main className="homeContent__container" >
+        <MainTitle texto={titulo} />
 
             <section>
                 <SearchBar
@@ -16,15 +18,14 @@ const HomeContent = ({ texto, onClick, type, placeholder, value, onChange, data 
                     type={type}
                     placeholder={placeholder}
                     value={value}
-                    onChange={onChange} />
+                    onChange={onChange}
+                    placeholder={placeholder} />
 
+                    <FilterBar filters={filters} onClick={handleFilters}/>
 
-                <div>
-                    <h2>FILTROS</h2>
-                </div>
 
                 <section>
-                    {data ? (
+                    {data.length ? (
                         data.map(item => {
                             const { logo, company, position, postedAt, contract, location, languages, tools } = item;
 
@@ -43,7 +44,7 @@ const HomeContent = ({ texto, onClick, type, placeholder, value, onChange, data 
                             )
                         })
 
-                    ): (<h2>Não Há Vaga Disponivel</h2>)
+                    ): (<h2>Nenhuma Vaga Encontrada</h2>)
                 }
                 
                 </section>

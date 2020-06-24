@@ -11,7 +11,8 @@ class Home extends Component {
 
     this.state = {
       inputValue: "",
-      data: []
+      data: [], 
+      filters: ["Todos","Front", "Back", "Design", "Junior", "Pleno", "Senior"]
     };
   }
 
@@ -24,15 +25,17 @@ class Home extends Component {
   }
 
   onClick = async () => {
-    const { inputValue, data } = this.state;
+    const { inputValue } = this.state;
+    const { data } = this.props;
 
     if (inputValue && data.length) {
-      const result = await data.filter(item => item.position.toLowerCase().includes(inputValue.toLowerCase));
+      const result = await data.filter(item => item.position.toLowerCase().includes(inputValue.toLowerCase()));
+
       console.log({ result })
-      this.setState({ inputValue: "" });
+      this.setState({ inputValue: "", data: result });
 
     } else {
-      console.log("Sem input ou sem data")
+      console.log({data})
     }
 
   };
@@ -44,20 +47,39 @@ class Home extends Component {
   };
 
 
+  handleFilters= (e)=>{
+    const {data} = this.props;
+    const value = e.target.id.toLowerCase();
+
+    const result = data.filter(item=>{
+      switch(value){
+        case "todos":
+          return data.map(vaga =>vaga);
+          default:
+            return item.position.toLowerCase().includes(value)
+      }
+    })
+
+    console.log(value);
+  }
+
   render() {
-    const {inputValue, data} = this.state
+    const {inputValue, data, filters} = this.state
 
 
     return (
       <GeneralTemplete>
         <HomeContent
-         texto=" Buscar"
+         texto="Buscar"
           onClick={this.onClick}
           type="text"
           placeholder="O que Você Procura?"
+          titulo = "TechJobs"
           value={inputValue}
           data = {data}
+          filters= {filters}
           onChange={this.onChange}
+          handleFilters={this.handleFilters}
           
         />
       </GeneralTemplete>
@@ -65,5 +87,7 @@ class Home extends Component {
   }
 
 }
+
+
 
 export default Home;
