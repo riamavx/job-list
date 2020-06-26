@@ -60,15 +60,17 @@ class Home extends Component {
       }
     })
 
-    console.log(value);
+  this.setState({data:result})
+  
   }
 
   render() {
-    const {inputValue, data, filters} = this.state
+    const {inputValue, data, filters} = this.state;
+    const {logout, loggedUser} = this.props
 
 
     return (
-      <GeneralTemplete>
+      <GeneralTemplete logout={logout} loggedUser={loggedUser} >
         <HomeContent
          texto="Buscar"
           onClick={this.onClick}

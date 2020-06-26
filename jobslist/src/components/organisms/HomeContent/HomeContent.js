@@ -16,7 +16,6 @@ const HomeContent = ({ texto,titulo, onClick,handleFilters, type, placeholder, v
                     texto={texto}
                     onClick={onClick}
                     type={type}
-                    placeholder={placeholder}
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder} />
