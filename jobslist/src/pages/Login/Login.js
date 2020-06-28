@@ -14,7 +14,6 @@ class Login extends Component {
     }
 
     onFinish = (value) => {
-        console.log("Dados enviados", value)
         this.props.history.push("/")
     }
 

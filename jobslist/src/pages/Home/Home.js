@@ -17,10 +17,10 @@ class Home extends Component {
   }
 
   componentDidMount = async () => {
-    console.log("O componente foi montado")
+    
     const getData = await this.props.data;
     this.setState({ data: getData });
-    console.log(this.state.data);
+    
 
   }
 
@@ -31,18 +31,16 @@ class Home extends Component {
     if (inputValue && data.length) {
       const result = await data.filter(item => item.position.toLowerCase().includes(inputValue.toLowerCase()));
 
-      console.log({ result })
+      
       this.setState({ inputValue: "", data: result });
 
-    } else {
-      console.log({data})
-    }
+    } 
 
   };
 
   onChange = e => {
     const value = e.target.value
-    console.log(value);
+    
     this.setState({ inputValue: value });
   };
 
@@ -64,6 +62,10 @@ class Home extends Component {
   
   }
 
+  
+  
+  
+  
   render() {
     const {inputValue, data, filters} = this.state;
     const {logout, loggedUser} = this.props

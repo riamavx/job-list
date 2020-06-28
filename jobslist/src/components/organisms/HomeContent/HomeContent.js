@@ -25,11 +25,12 @@ const HomeContent = ({ texto,titulo, onClick,handleFilters, type, placeholder, v
 
                 <section>
                     {data.length ? (
-                        data.map(item => {
+                        data.map((item, index) => {
                             const { logo, company, position, postedAt, contract, location, languages, tools } = item;
 
                             return (
                                 <Card
+                                    key = {`${index + 1}-- card`}
                                     logo={logo}
                                     company={company}
                                     position={position}
@@ -38,7 +39,7 @@ const HomeContent = ({ texto,titulo, onClick,handleFilters, type, placeholder, v
                                     location={location}
                                     languages={languages}
                                     tools={tools}
-
+                                    
                                 />
                             )
                         })
