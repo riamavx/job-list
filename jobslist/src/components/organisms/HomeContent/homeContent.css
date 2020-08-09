@@ -1,0 +1,12 @@
+.homeContent__container{
+    width: 100%;
+    text-align: center;
+    margin:  50px auto;
+    height: 100vh;
+}
+
+.homeContent__container > h1{
+   color: #bebebe;
+    font-family: 'Chivo', sans-serif;
+    font-size:  20px;
+}
